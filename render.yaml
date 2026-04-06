@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: finaccess-api
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: finaccess-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: MODEL_PATH
+        value: /opt/render/project/src/ai/model/credit_model.joblib
+      - key: CORS_ORIGINS
+        value: https://your-frontend-domain.vercel.app
+
+databases:
+  - name: finaccess-db
