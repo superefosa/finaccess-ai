@@ -6,7 +6,7 @@ venv/
 frontend/node_modules/
 node_modules/
 
-# Environment files
+# Environments
 .env
 *.env
 
@@ -17,3 +17,9 @@ __pycache__/
 # Local databases
 *.db
 *.sqlite3
+
+# Editor/system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
