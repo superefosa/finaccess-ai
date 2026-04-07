@@ -13,9 +13,9 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: MODEL_PATH
-        value: /opt/render/project/src/ai/model/credit_model.joblib
+        value: /opt/render/project/src/backend/app/model/credit_model.joblib
       - key: CORS_ORIGINS
-        value: https://your-frontend-domain.vercel.app
+        value: https://finaccess-ai.vercel.app
 
 databases:
   - name: finaccess-db
