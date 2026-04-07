@@ -31,30 +31,25 @@ Use these credentials to test the system immediately:
 ## 🧰 Tech Stack
 
 ### Frontend
-
 * React (Vite)
 * JavaScript
 * Axios
 
 ### Backend
-
 * FastAPI
 * SQLAlchemy
 * Alembic (database migrations)
 * JWT Authentication (python-jose)
 
 ### AI / Machine Learning
-
 * scikit-learn
 * pandas
 * joblib
 
 ### Database
-
 * SQLite (deployment version)
 
 ### DevOps / Tooling
-
 * Docker Compose (local development)
 * GitHub Actions (CI scaffolding)
 * Render (backend deployment)

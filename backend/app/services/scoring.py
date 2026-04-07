@@ -1,7 +1,10 @@
 from pathlib import Path
+
 import joblib
 import numpy as np
+import pandas as pd
 from sqlalchemy.orm import Session
+
 from app.core.config import settings
 from app.models.financial_profile import FinancialProfile
 from app.models.loan_application import LoanApplication
@@ -22,41 +25,109 @@ HOUSING_MAP = {
 
 class FallbackModel:
     def predict_proba(self, X):
+        if isinstance(X, pd.DataFrame):
+            rows = X.to_dict(orient="records")
+            results = []
+
+            for row in rows:
+                monthly_income = row["monthly_income"]
+                monthly_expenses = row["monthly_expenses"]
+                current_debt = row["current_debt"]
+                years_employed = row["years_employed"]
+                requested_amount = row["requested_amount"]
+                repayment_months = row["repayment_months"]
+                age = row["age"]
+                dependents = row["dependents"]
+                employment_code = row["employment_code"]
+                housing_code = row["housing_code"]
+
+                debt_to_income = (current_debt + requested_amount) / max(monthly_income * 12, 1)
+                expense_ratio = monthly_expenses / max(monthly_income, 1)
+                stability = min(years_employed / 10, 1)
+                employment_bonus = employment_code / 10
+                housing_bonus = housing_code / 20
+                age_factor = 0.05 if 25 <= age <= 55 else 0.12
+
+                risk = (
+                    0.25
+                    + debt_to_income * 0.5
+                    + expense_ratio * 0.2
+                    + age_factor
+                    - stability * 0.1
+                    - employment_bonus
+                    - housing_bonus
+                )
+                risk = min(max(risk, 0.01), 0.99)
+                results.append([1 - risk, risk])
+
+            return np.array(results)
+
         results = []
         for row in X:
-            monthly_income, monthly_expenses, current_debt, years_employed, requested_amount, repayment_months, age, dependents, employment_code, housing_code = row
+            (
+                monthly_income,
+                monthly_expenses,
+                current_debt,
+                years_employed,
+                requested_amount,
+                repayment_months,
+                age,
+                dependents,
+                employment_code,
+                housing_code,
+            ) = row
+
             debt_to_income = (current_debt + requested_amount) / max(monthly_income * 12, 1)
             expense_ratio = monthly_expenses / max(monthly_income, 1)
             stability = min(years_employed / 10, 1)
             employment_bonus = employment_code / 10
             housing_bonus = housing_code / 20
             age_factor = 0.05 if 25 <= age <= 55 else 0.12
-            risk = 0.25 + debt_to_income * 0.5 + expense_ratio * 0.2 + age_factor - stability * 0.1 - employment_bonus - housing_bonus
+
+            risk = (
+                0.25
+                + debt_to_income * 0.5
+                + expense_ratio * 0.2
+                + age_factor
+                - stability * 0.1
+                - employment_bonus
+                - housing_bonus
+            )
             risk = min(max(risk, 0.01), 0.99)
             results.append([1 - risk, risk])
+
         return np.array(results)
 
 
 def load_model():
-    path = Path(__file__).resolve().parent / settings.model_path
-    if path.exists():
-        return joblib.load(path)
+    model_path = Path(settings.model_path)
+
+    if not model_path.is_absolute():
+        model_path = Path(__file__).resolve().parents[2] / settings.model_path
+
+    if model_path.exists():
+        return joblib.load(model_path)
+
     return FallbackModel()
 
 
-def build_features(profile: FinancialProfile, application: LoanApplication):
-    return np.array([[
-        profile.monthly_income,
-        profile.monthly_expenses,
-        profile.current_debt,
-        profile.years_employed,
-        application.requested_amount,
-        application.repayment_months,
-        profile.age,
-        profile.dependents,
-        EMPLOYMENT_MAP.get(profile.employment_status, 0),
-        HOUSING_MAP.get(profile.housing_status, 0),
-    ]])
+def build_features(profile: FinancialProfile, application: LoanApplication) -> pd.DataFrame:
+    return pd.DataFrame(
+        [
+            {
+                "monthly_income": profile.monthly_income,
+                "monthly_expenses": profile.monthly_expenses,
+                "current_debt": profile.current_debt,
+                "years_employed": profile.years_employed,
+                "requested_amount": application.requested_amount,
+                "repayment_months": application.repayment_months,
+                "age": profile.age,
+                "dependents": profile.dependents,
+                "employment_code": EMPLOYMENT_MAP.get(profile.employment_status, 0),
+                "housing_code": HOUSING_MAP.get(profile.housing_status, 0),
+            }
+        ]
+    )
 
 
 def recommendation_from_score(score: float) -> str:
@@ -70,6 +141,7 @@ def recommendation_from_score(score: float) -> str:
 def explanation_summary(profile: FinancialProfile, application: LoanApplication, score: float) -> str:
     reasons = []
     dti = (profile.current_debt + application.requested_amount) / max(profile.monthly_income * 12, 1)
+
     if dti > 0.35:
         reasons.append("high debt-to-income ratio increased risk")
     if profile.years_employed < 2:
@@ -80,6 +152,7 @@ def explanation_summary(profile: FinancialProfile, application: LoanApplication,
         reasons.append("stable housing reduced risk")
     if not reasons:
         reasons.append("balanced financial profile produced a moderate risk assessment")
+
     return "; ".join(reasons)
 
 
@@ -87,9 +160,11 @@ def score_application(db: Session, profile: FinancialProfile, application: LoanA
     model = load_model()
     features = build_features(profile, application)
     score = float(model.predict_proba(features)[0][1])
+
     application.ai_score = round(score, 4)
     application.ai_recommendation = recommendation_from_score(score)
     application.explanation_summary = explanation_summary(profile, application, score)
+
     db.add(application)
     db.commit()
     db.refresh(application)
