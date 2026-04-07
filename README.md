@@ -19,8 +19,8 @@ It demonstrates a complete **end-to-end lending workflow**, including user onboa
 - 📦 **GitHub Repository:** https://github.com/superefosa/finaccess-ai  
 - 🧠 **Design Document:** https://github.com/superefosa/finaccess-ai/blob/main/docs/design.md  
 - 🧪 **Testing Document:** https://github.com/superefosa/finaccess-ai/blob/main/docs/testing.md  
-- 📋 **Agile Task Board (Trello):** https://trello.com/ *(replace with your real board link)*  
-- 🎬 **Final Presentation (15–20 min):** https://youtube.com/ *(add your video link)*  
+- 📋 **Agile Task Board (Trello):** https://trello.com/b/y48tTuWO/finaccess-ai-capstone-scrum-board
+- 🎬 **Final Presentation (15–20 min):** *(googleDriveLink add your video link)*  
 
 ⚠️ Ensure this repository is shared with: `quantic-grader`
 
@@ -207,6 +207,8 @@ python train_model.py
 ## 👨‍💻 Author
 
 Efosa Kelvin Obasuyi  
+Jimly Okeke
+Eze Odira Obianuju
 
 ---
 

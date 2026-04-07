@@ -1,0 +1,258 @@
+Cmds
+
+Efosa Kelvin Obasuyi
+​Efosa Kelvin Obasuyi​
+Here’s the simple full route map.
+
+Frontend routes
+
+These are the website pages you open in the browser.
+
+Live frontend
+
+https://finaccess-ai.vercel.app
+
+Main frontend routes
+
+/                → Home page
+/login           → Login page
+/register        → Register page
+/dashboard       → User dashboard
+/profile         → Financial profile page
+/apply           → Loan application page
+/admin           → Admin dashboard
+
+Full live URLs
+
+https://finaccess-ai.vercel.app/
+https://finaccess-ai.vercel.app/login
+https://finaccess-ai.vercel.app/register
+https://finaccess-ai.vercel.app/dashboard
+https://finaccess-ai.vercel.app/profile
+https://finaccess-ai.vercel.app/apply
+https://finaccess-ai.vercel.app/admin
+
+Local frontend
+
+http://localhost:5173
+http://localhost:5173/login
+http://localhost:5173/register
+http://localhost:5173/dashboard
+http://localhost:5173/profile
+http://localhost:5173/apply
+http://localhost:5173/admin
+
+
+⸻
+
+Backend routes
+
+These are API routes. Most are best used from Swagger UI.
+
+Live backend base
+
+https://finaccess-backend.onrender.com
+
+Main backend endpoints
+
+/                 → No homepage, usually Not Found
+/docs             → Swagger UI
+/openapi.json     → Raw API schema
+/health           → Health check
+
+Auth
+
+/auth/register    → Register user
+/auth/login       → Login user
+/auth/me          → Get current logged-in user
+
+Profiles
+
+/profiles         → Create or update financial profile
+/profiles/me      → Get current user's profile
+
+Applications
+
+/applications             → Create application
+/applications/me          → Get current user's applications
+/applications/{id}        → Get one application by ID
+
+Admin
+
+/admin/applications                 → List all applications
+/admin/applications/{id}/decision   → Approve or reject application
+/admin/audit-logs                   → View audit logs
+
+
+⸻
+
+Best URLs to actually use
+
+For normal app use
+
+https://finaccess-ai.vercel.app
+
+For admin use
+
+https://finaccess-ai.vercel.app/admin
+
+For backend testing
+
+https://finaccess-backend.onrender.com/docs
+
+To check backend is alive
+
+https://finaccess-backend.onrender.com/health
+
+https://dashboard.render.com/project/prj-d79ucak50q8c73fqplo0
+⸻
+
+Login map
+
+User login
+
+Use on:
+
+https://finaccess-ai.vercel.app/login
+
+Credentials:
+
+user@example.com
+UserPass123!
+
+Admin login
+
+Use on:
+
+https://finaccess-ai.vercel.app/login
+
+Credentials:
+
+admin@example.com
+AdminPass123!
+
+Then open:
+
+https://finaccess-ai.vercel.app/admin
+
+
+⸻
+
+Easiest way to remember
+
+Website
+      •     Vercel URL = UI
+
+API
+      •     Render URL = backend
+
+Backend interface
+      •     /docs = Swagger
+
+Health
+      •     /health = check service status
+
+If you want, I can turn this into a neat section you can paste into your README.
+
+
+
+
+Add this section to your README.
+
+## ▶️ How to Start the App on a Local Machine
+
+There are two ways to run the project locally:
+
+### Option 1: Run with Docker
+
+This starts the full stack together.
+
+#### 1. Train the AI model
+```bash
+cd ai
+python train_model.py
+
+2. Start the application
+
+docker compose up --build
+
+3. Seed demo accounts
+Open a new terminal and run:
+
+docker compose exec backend python seed_demo.py
+
+4. Open the app
+      •     Frontend: http://localhost:5173
+      •     Backend API: http://localhost:8000
+      •     API Docs: http://localhost:8000/docs
+
+Demo credentials
+      •     Admin: admin@example.com / AdminPass123!
+      •     User: user@example.com / UserPass123!
+
+⸻
+
+Option 2: Run without Docker
+
+Use this if running services manually.
+
+Backend
+Open Terminal 1:
+
+cd backend
+pip install -r requirements.txt
+alembic upgrade head
+python seed_demo.py
+uvicorn app.main:app --reload
+
+Frontend
+Open Terminal 2:
+
+cd frontend
+npm install
+npm run dev
+
+Open the app
+      •     Frontend: http://localhost:5173
+      •     Backend API: http://localhost:8000
+      •     API Docs: http://localhost:8000/docs
+
+Demo credentials
+      •     Admin: admin@example.com / AdminPass123!
+      •     User: user@example.com / UserPass123!
+
+⸻
+
+Windows CMD Example
+
+Backend
+
+py -m venv .venv
+.venv\Scripts\activate
+py -m pip install --upgrade pip
+py -m pip install -r requirements.txt
+py -m alembic upgrade head
+py seed_demo.py
+py -m uvicorn app.main:app --reload
+
+Frontend
+Open another CMD window:
+
+cd C:\finaccess-ai\frontend
+npm install
+npm run dev
+
+
+⸻
+
+Notes
+      •     Make sure the AI model file exists before starting:
+
+backend/app/model/credit_model.joblib
+
+      •     If the frontend is running but cannot load data, check that the backend is also running.
+      •     If port 5173 or 8000 is already in use, stop the other process using that port first.
+
+If you want, I can also merge this into your full README so you can paste one final version.
+
+
