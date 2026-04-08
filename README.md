@@ -204,12 +204,11 @@ python train_model.py
 
 ---
 
-## 👨‍💻 Author
+## 👥 Team Members
 
-Efosa Kelvin Obasuyi  
-Jimly Okeke
-Eze Odira Obianuju
-
+- Efosa Kelvin Obasuyi – Backend, AI, System Architecture  
+- Jimly Okeke – Frontend, Integration  
+- Eze Odira Obianuju – Admin Dashboard, Testing  
 ---
 
 ## 📌 How to Evaluate
