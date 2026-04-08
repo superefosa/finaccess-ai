@@ -22,7 +22,7 @@ It demonstrates a complete **end-to-end lending workflow**, including user onboa
 - 📋 **Agile Task Board (Trello):** https://trello.com/b/y48tTuWO/finaccess-ai-capstone-scrum-board
 - 🎬 **Final Presentation (15–20 min):** *(googleDriveLink add your video link)*  
 
-⚠️ Ensure this repository is shared with: `quantic-grader`
+⚠️ Ensure This repository has been shared with the GitHub account: quantic-grader
 
 ---
 
