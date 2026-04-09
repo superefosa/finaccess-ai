@@ -16,7 +16,7 @@ export default function NavBar() {
   }
 
   const NavLink = ({ to, children }) => (
-    <Link to={to} className="text-gray-600 hover:text-primary-600 font-medium transition-colors">
+    <Link to={to} className="text-gray-600 hover:text-primary-600 font-medium transition-colors block w-full">
       {children}
     </Link>
   )
@@ -42,8 +42,10 @@ export default function NavBar() {
             </Link>
           </motion.div>
           
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-6">
             <NavLink to="/">Home</NavLink>
+            <NavLink to="/about">About</NavLink>
             
             {token ? (
               <>
@@ -80,6 +82,7 @@ export default function NavBar() {
             )}
           </div>
           
+          {/* Mobile Menu Button */}
           <motion.button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 rounded-lg hover:bg-gray-100"
@@ -95,15 +98,18 @@ export default function NavBar() {
           </motion.button>
         </div>
         
+        {/* Mobile Menu - Fixed spacing */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div 
-              className="md:hidden py-4 border-t border-gray-100 space-y-3"
+              className="md:hidden py-4 border-t border-gray-100 flex flex-col gap-3"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
             >
               <NavLink to="/">Home</NavLink>
+              <NavLink to="/about">About</NavLink>
+              
               {token ? (
                 <>
                   {role !== 'admin' && (
@@ -118,7 +124,7 @@ export default function NavBar() {
                   )}
                   <motion.button
                     onClick={logout}
-                    className="w-full bg-gray-900 text-white px-5 py-2 rounded-xl font-semibold hover:bg-gray-800"
+                    className="w-full bg-gray-900 text-white px-5 py-3 rounded-xl font-semibold hover:bg-gray-800 text-left"
                     whileTap={{ scale: 0.95 }}
                   >
                     Logout
@@ -127,7 +133,10 @@ export default function NavBar() {
               ) : (
                 <>
                   <NavLink to="/register">Register</NavLink>
-                  <Link to="/login" className="block w-full bg-primary-600 text-white px-5 py-2 rounded-xl font-semibold hover:bg-primary-700 text-center">
+                  <Link 
+                    to="/login" 
+                    className="block w-full bg-primary-600 text-white px-5 py-3 rounded-xl font-semibold hover:bg-primary-700 text-center"
+                  >
                     Login
                   </Link>
                 </>
