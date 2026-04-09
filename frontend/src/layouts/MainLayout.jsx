@@ -1,10 +1,14 @@
 import NavBar from '../components/NavBar'
+import Footer from '../components/Footer'
 
 export default function MainLayout({ children }) {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <NavBar />
-      <main className="container">{children}</main>
+      <main className="flex-1 container-custom py-8">
+        {children}
+      </main>
+      <Footer />
     </div>
   )
 }
