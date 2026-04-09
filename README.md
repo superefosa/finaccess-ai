@@ -19,10 +19,10 @@ It demonstrates a complete **end-to-end lending workflow**, including user onboa
 - 📦 **GitHub Repository:** https://github.com/superefosa/finaccess-ai  
 - 🧠 **Design Document:** https://github.com/superefosa/finaccess-ai/blob/main/docs/design.md  
 - 🧪 **Testing Document:** https://github.com/superefosa/finaccess-ai/blob/main/docs/testing.md  
-- 📋 **Agile Task Board (Trello):** https://trello.com/b/y48tTuWO/finaccess-ai-capstone-scrum-board
-- 🎬 **Final Presentation (15–20 min):** *(googleDriveLink add your video link)*  
+- 📋 **Agile Task Board (Trello):** https://trello.com/b/y48tTuWO/finaccess-ai-capstone-scrum-board  
+- 🎬 **Final Presentation (15–20 min):** *(ADD YOUR GOOGLE DRIVE LINK HERE)*  
 
-⚠️ Ensure This repository has been shared with the GitHub account: quantic-grader
+⚠️ Ensure this repository has been shared with the GitHub account: **quantic-grader**
 
 ---
 
@@ -36,8 +36,8 @@ It demonstrates a complete **end-to-end lending workflow**, including user onboa
 - Email: `admin@example.com`  
 - Password: `AdminPass123!`
 
-👉 **Login:** https://finaccess-ai.vercel.app/login  
-👉 **Admin Dashboard:** https://finaccess-ai.vercel.app/admin  
+👉 Login: https://finaccess-ai.vercel.app/login  
+👉 Admin Dashboard: https://finaccess-ai.vercel.app/admin  
 
 ---
 
@@ -82,7 +82,7 @@ It demonstrates a complete **end-to-end lending workflow**, including user onboa
 - joblib
 
 ### Database
-- **PostgreSQL (production – Render)**
+- PostgreSQL (production – Render)
 - SQLite (optional local fallback)
 
 ### DevOps / Tooling
@@ -95,13 +95,15 @@ It demonstrates a complete **end-to-end lending workflow**, including user onboa
 
 ## 🏗️ System Architecture
 
+
 Frontend (React)
-        ↓
+↓
 FastAPI Backend (REST API)
-        ↓
+↓
 Database (PostgreSQL)
-        ↓
+↓
 AI Model (scikit-learn)
+
 
 ---
 
@@ -116,115 +118,63 @@ AI Model (scikit-learn)
 
 ### 1️⃣ Clone Repository
 
+```bash
 git clone https://github.com/superefosa/finaccess-ai.git
 cd finaccess-ai
-
----
-
-### 2️⃣ Setup Environment
-
+2️⃣ Setup Environment
 copy .env.example .env
-
----
-
-### 3️⃣ Run Backend
-
+3️⃣ Run Backend
 cd backend
-
 python -m venv venv
 venv\Scripts\activate
-
 pip install -r requirements.txt
 alembic upgrade head
 uvicorn app.main:app --reload
-
----
-
-### 4️⃣ Run Frontend
-
+4️⃣ Run Frontend
 cd frontend
 npm install
 npm run dev
-
----
-
-### 5️⃣ Train AI Model (Optional)
-
+5️⃣ Train AI Model (Optional)
 cd ai
 python train_model.py
-
----
-
-## 🧪 Testing
-
-- Manual functional testing
-- API testing via Swagger UI
-- CI pipeline with GitHub Actions
-
----
-
-## 🔄 CI/CD Pipeline
-
-- GitHub Actions for CI  
-- Backend auto-deployed on Render  
-- Frontend auto-deployed on Vercel  
-
----
-
-## 📋 Agile Development
-
-- Scrum-based development  
-- Multiple sprint cycles  
-- Task tracking via Trello  
-
----
-
-## 🔒 Security
-
-- JWT authentication  
-- Password hashing  
-- Role-based access control  
-
----
-
-## 🚧 Limitations
-
-- Limited automated testing  
-- Basic AI model  
-- No real banking integration  
-
----
-
-## 🔮 Future Improvements
-
-- Advanced ML models  
-- Real-time integrations  
-- Microservices architecture  
-- Kubernetes deployment  
-
----
-
-## 👥 Team Members
-
-- Efosa Kelvin Obasuyi – Backend, AI, System Architecture  
-- Jimly Okeke – Frontend, Integration  
-- Eze Odira Obianuju – Admin Dashboard, Testing  
----
-
-## 📌 How to Evaluate
-
-1. Open frontend  
-2. Login  
-3. Submit application  
-4. Check AI score  
-5. Login as admin  
-6. Approve/reject  
-
----
-
-## ⭐ Summary
-
-- Full-stack engineering  
-- AI integration  
-- Cloud deployment  
-- Agile practices  
+🧪 Testing
+Manual functional testing
+API testing via Swagger UI
+CI pipeline with GitHub Actions
+🔄 CI/CD Pipeline
+GitHub Actions for CI
+Backend auto-deployed on Render
+Frontend auto-deployed on Vercel
+📋 Agile Development
+Scrum-based development
+Multiple sprint cycles
+Task tracking via Trello
+🔒 Security
+JWT authentication
+Password hashing
+Role-based access control
+🚧 Limitations
+Limited automated testing
+Basic AI model
+No real banking integration
+🔮 Future Improvements
+Advanced ML models
+Real-time integrations
+Microservices architecture
+Kubernetes deployment
+👥 Team Members
+Efosa Kelvin Obasuyi – Backend, AI, System Architecture
+Jimly Okeke – Frontend, Integration
+Eze Odira Obianuju – Admin Dashboard, Testing
+📌 How to Evaluate
+Open frontend
+Login
+Submit application
+Check AI score
+Login as admin
+Approve/reject
+⭐ Summary
+Full-stack engineering
+AI integration
+Cloud deployment
+Agile practices
