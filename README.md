@@ -10,6 +10,7 @@ It demonstrates a complete **end-to-end lending workflow**, including user onboa
 
 - **Frontend (Vercel):** https://finaccess-ai.vercel.app  
 - **Backend API:** https://finaccess-backend.onrender.com  
+- **Backend DBs https://dashboard.render.com/
 - **API Documentation (Swagger):** https://finaccess-backend.onrender.com/docs  
 
 ---
@@ -20,9 +21,9 @@ It demonstrates a complete **end-to-end lending workflow**, including user onboa
 - 🧠 **Design Document:** https://github.com/superefosa/finaccess-ai/blob/main/docs/design.md  
 - 🧪 **Testing Document:** https://github.com/superefosa/finaccess-ai/blob/main/docs/testing.md  
 - 📋 **Agile Task Board (Trello):** https://trello.com/b/y48tTuWO/finaccess-ai-capstone-scrum-board  
-- 🎬 **Final Presentation (15–20 min):** *(ADD YOUR GOOGLE DRIVE LINK HERE)*  
+- 🎬 **Final Presentation (15–20 min):** *https://drive.google.com/file/d/1l7OClDdHcvti4QgytbimA0KIJPTGn6BX/view?usp=sharing  
 
-⚠️ Ensure this repository has been shared with the GitHub account: **quantic-grader**
+
 
 ---
 
